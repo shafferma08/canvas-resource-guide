@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Transition: Final Readiness Check</title>
+    <style>
+        :root {
+            --primary-color: #0d9488;
+            --secondary-color: #f0fdfa;
+            --text-color: #334155;
+            --accent-blue: #0284c7;
+            --font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.35;
+            color: var(--text-color);
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 15px;
+            font-size: 13px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-top: 6px solid var(--primary-color);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 15px;
+        }
+
+        h1 {
+            color: #0f172a;
+            margin: 0;
+            font-size: 1.8em;
+            letter-spacing: -0.5px;
+        }
+
+        /* Grid Layout for Steps */
+        .step-section {
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            align-items: start;
+        }
+
+        /* Header and Intro span full width */
+        .step-section h2,
+        .step-section p {
+            grid-column: 1 / -1;
+            margin-bottom: 5px;
+        }
+
+        .step-section p {
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #0f172a;
+            font-size: 1.3em;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step-icon {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .task-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 15px;
+            height: 100%;
+            box-sizing: border-box;
+            page-break-inside: avoid;
+        }
+
+        /* Make Step 3's card span full width */
+        .step-section:last-of-type .task-card {
+            grid-column: 1 / -1;
+        }
+
+        .task-title {
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            color: #1e293b;
+        }
+
+        .task-desc {
+            color: #475569;
+            font-size: 0.95em;
+        }
+
+        .task-desc ul,
+        .task-desc ol {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+
+        .task-desc li {
+            margin-bottom: 3px;
+        }
+
+        .tip-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--accent-blue);
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.95em;
+            border-radius: 0 4px 4px 0;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px dashed var(--primary-color);
+        }
+
+        .resource-tag {
+            display: inline-block;
+            font-size: 0.85em;
+            background: #f1f5f9;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #64748b;
+            margin-top: 8px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+            page-break-inside: avoid;
+        }
+
+        .contact-card {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+        }
+
+        section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            page-break-inside: avoid;
+        }
+
+        /* Print Specific Styles */
+        @media print {
+            @page {
+                size: letter;
+                margin: 0.3in;
+            }
+
+            body {
+                background: white;
+                padding: 0;
+                font-size: 11pt;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+                border: none;
+            }
+
+            .task-card,
+            .contact-card {
+                break-inside: avoid;
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+                /* Fallback spacing */
+            }
+
+            a {
+                text-decoration: none;
+                border: none;
+                color: #000;
+            }
+
+            .step-section {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 10px !important;
+                /* Allow breaking inside sections */
+                page-break-inside: auto;
+                margin-bottom: 15px;
+            }
+
+            h1 {
+                font-size: 16pt;
+                margin-bottom: 5px;
+            }
+
+            h2 {
+                font-size: 13pt;
+                margin-top: 10px;
+                margin-bottom: 5px;
+            }
+
+            p {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Transition Readiness Guide</h1>
+            <p style="color: #64748b; margin-top: 5px;">
+                Created by <strong>Marianne Shaffer</strong> | <a href="mailto:shafferma@pcsb.org"
+                    style="color: inherit; text-decoration: none; border-bottom: 1px dotted #64748b;">shafferma@pcsb.org</a>
+            </p>
+        </header>
+
+        <!-- STEP 1: REVIEW -->
+        <div class="step-section">
+            <h2>
+                <div class="step-icon">1</div> Review Your New Canvas Courses
+            </h2>
+            <p style="color: #64748b;">
+                Canvas courses are automatically created based on your schedule in <strong>Focus</strong>. Students are
+                rostered into the Canvas course that matches their Focus enrollment. Please review <strong>each of your
+                    courses</strong> to ensure your content is ready.
+            </p>
+
+            <div class="task-card">
+                <div class="task-title">🔍 Validate Imported Content</div>
+                <div class="task-desc">
+                    Take 10 minutes to click through your Canvas courses.
+                    <ul>
+                        <li><strong>Check Modules:</strong> Ensure your weekly folders/units are organized securely in
+                            the "Modules" tab.</li>
+                        <li><strong>Check Files:</strong> Click the <strong>Files</strong> link in the left navigation.
+                            Verify your PDFs, PowerPoints, and images are listed there.</li>
+                        <li><strong>Test Links:</strong> Click on a few assignments or external links to ensure they
+                            don't lead to a "Broken Link" error page.</li>
+                    </ul>
+                    <a href="https://community.canvaslms.com/t5/Instructor-Guide/How-do-I-validate-links-in-a-course/ta-p/1001"
+                        target="_blank" class="resource-tag">📄 Guide: Link Validator</a>
+                </div>
+            </div>
+
+            <div class="task-card">
+                <div class="task-title">🛠️ Check Integrations (If Applicable)</div>
+                <div class="task-desc">
+                    If your course uses publisher tools (Cengage, Pearson, etc.):
+                    <br>Launch one of the external tool assignments to verify it connects properly.
+                    <div class="tip-box">
+                        <strong>Note:</strong> If you see an error or missing content, please contact <a
+                            href="mailto:shafferma@pcsb.org" style="border:none;">Marianne Shaffer</a> so we can
+                        troubleshoot before students log in.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 2: BACKUP -->
+        <div class="step-section">
+            <h2>
+                <div class="step-icon">2</div> Secure Your "Just in Case" Files
+            </h2>
+            <p style="color: #64748b;">
+                It is a smart safety measure to keep a personal copy of your original Blackboard files.
+            </p>
+
+            <div class="task-card">
+                <div class="task-title">📂 Download via Content Collection</div>
+                <div class="task-desc">
+                    The easiest way to grab your files in Blackboard:
+                    <ol>
+                        <li>In your Blackboard course Control Panel, click <strong>Content Collection</strong>.</li>
+                        <li>Click the first ID link (e.g., <code>s2-454-b07...</code>).</li>
+                        <li>Scroll to the bottom, select <strong>Show All</strong>.</li>
+                        <li>Check the boxes for the specific files you need.</li>
+                        <li>Click <strong>Download Package</strong>.</li>
+                    </ol>
+                    This will save a ZIP file to your computer.
+                </div>
+            </div>
+
+            <div class="task-card">
+                <div class="task-title">📊 Archive Your Gradebook</div>
+                <div class="task-desc">
+                    If you want a copy of your current Grade Center for your permanent records:
+                    <ol>
+                        <li>Go to <strong>Grade Center > Full Grade Center</strong>.</li>
+                        <li>Click the <strong>Work Offline</strong> button (top right corner) and select
+                            <strong>Download</strong>.
+                        </li>
+                        <li>Click <strong>Submit</strong>, then <strong>Download</strong> again to save the Excel file
+                            to your computer.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- This card will naturally flow into the next row of the grid if there are 3 items -->
+            <div class="task-card">
+                <div class="task-title">📄 Generate Individual/Class Grade Reports</div>
+                <div class="task-desc">
+                    <ol>
+                        <li><strong>Access Grade Center:</strong> Go to Control Panel > Grade Center > Full Grade
+                            Center.</li>
+                        <li><strong>Create Report:</strong> Select Reports in the action bar, then click Create Report.
+                        </li>
+                        <li><strong>Customize Report:</strong> In the Header Information area, select items to include.
+                        </li>
+                        <li><strong>Select Users:</strong> Choose to include All Users, a specific group, or selected
+                            users.</li>
+                        <li><strong>Submit and Print:</strong> Click Submit, then select Print to save as a PDF or print
+                            a hard copy.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 3: PUBLISH -->
+        <div class="step-section">
+            <h2>
+                <div class="step-icon">3</div> Ready for Launch
+            </h2>
+
+            <div class="task-card" style="border-left: 5px solid var(--primary-color);">
+                <div class="task-title">🚀 Publish & Welcome</div>
+                <div class="task-desc">
+                    When you are confident your materials are ready:
+                    <ol>
+                        <li>Click the <strong>Publish</strong> button on your Course Home Page.</li>
+                    </ol>
+                    <div
+                        style="background-color: #f0fdfa; border-left: 5px solid #0d9488; padding: 15px; margin-top: 20px; color: #1e293b;">
+                        <strong>IMPORTANT:</strong> You must <strong>CONTACT MARIANNE SHAFFER</strong> to receive the
+                        <strong>Student Login Instructions</strong> to distribute to your students.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACTS -->
+        <section>
+            <h2 style="font-size: 1.4em;">🤝 We Are Here to Help</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <strong>Canvas Administrator & Support</strong>
+                    <br>Marianne Shaffer
+                    <br><a href="mailto:shafferma@pcsb.org" style="border:none;">shafferma@pcsb.org</a>
+                </div>
+                <div class="contact-card">
+                    <strong>Campus Support</strong>
+                    <br>Clearwater: Sarah Lawrence
+                    <br><a href="mailto:lawrencesar@pcsb.org" style="border:none;">lawrencesar@pcsb.org</a>
+                    <br>St. Pete: Rebekah Kershaw
+                    <br><a href="mailto:kershawr@pcsb.org" style="border:none;">kershawr@pcsb.org</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Transition FAQ - Pinellas Technical College</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #f0f4f8;
+            --text-color: #333;
+            --accent-color: #d9534f;
+            --font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #666;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            color: var(--primary-color);
+        }
+
+        .category-title {
+            background-color: #e9ecef;
+            padding: 10px 15px;
+            border-left: 5px solid var(--primary-color);
+            margin-top: 40px;
+            color: #444;
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #f8f9fa;
+            padding-bottom: 20px;
+        }
+
+        .question {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .answer {
+            color: #555;
+            padding-left: 15px;
+        }
+
+        .video-box {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .video-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #dc3545;
+        }
+
+        .highlight-box {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            border: 1px solid #ffeeba;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Main Guide</a>
+
+        <header>
+            <h1>Frequently Asked Questions & Resources</h1>
+            <p>Detailed answers and helpful video tutorials for the Canvas transition.</p>
+        </header>
+
+        <!-- LOGIN SECTION -->
+        <h2 class="category-title">🔐 Login & Access Troubleshooting</h2>
+
+        <div class="faq-item">
+            <span class="question">My student says they can't log in. What should I check?</span>
+            <div class="answer">
+                <p>This is usually due to one of two reasons:</p>
+                <ol>
+                    <li><strong>Wrong URL:</strong> Ensure they are using the specific PTC student link:
+                        <code>https://pcsb.instructure.com/login/saml/213</code>. The standard "pcsb.org" link often
+                        fails for PTC students.
+                    </li>
+                    <li><strong>Wrong Credentials:</strong> Students must sign in using their full
+                        <strong>@myptc.edu</strong> email address, not a personal email or just their username.
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <span class="question">I am both an instructor and a student (e.g., Taking professional development). Which
+                login do I use?</span>
+            <div class="answer">
+                Use the login link that matches your primary role for the accessing session. Generally, staff
+                credentials (pcsb.org) work on the staff URL (<code>.../211</code>), even for PD courses.
+            </div>
+        </div>
+
+        <!-- MIGRATION SECTION -->
+        <h2 class="category-title">📦 Content Migration & Setup</h2>
+
+        <div class="faq-item">
+            <span class="question">I imported my Blackboard course, but it looks messy. Do I have to fix everything
+                now?</span>
+            <div class="answer">
+                <strong>No.</strong> Prioritize functionality over aesthetics for Feb 16. As long as students can click
+                on Modules and find their assignments/files for <em>this week</em>, you are good. You can clean up the
+                formatting later.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <span class="question">Where are my "Content Folders" from Blackboard?</span>
+            <div class="answer">
+                Canvas does not use nested folders like Blackboard. Instead, it uses **Modules**.
+                <p>Think of a Module as a "Container" or "Folder" that holds pages, files, and assignments. Using
+                    Modules is the #1 way to organize your Canvas course effectively.</p>
+                <div class="video-box">
+                    <div class="video-icon">▶️</div>
+                    <div>
+                        <strong>Watch:</strong> <a
+                            href="https://community.canvaslms.com/t5/Video-Guide/Modules-Overview-Instructors/ta-p/383114"
+                            target="_blank">Modules Overview Strategy (Video)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <span class="question">Why do my Announcements show as "Unidentified User"?</span>
+            <div class="answer">
+                Announcements imported from Blackboard often lose their "author" metadata. It is recommended to
+                <strong>delete old announcements</strong> and post fresh ones in Canvas so students know they are
+                current and active.
+            </div>
+        </div>
+
+        <!-- TOOLS & QUIZZES -->
+        <h2 class="category-title">🛠️ Quizzes & Tools</h2>
+
+        <div class="faq-item">
+            <span class="question">I see a "Grade Sync" button. Should I click it?</span>
+            <div class="answer">
+                <strong style="color: #dc3545;">No.</strong> Grade sync to Focus is <strong>not available</strong> for
+                PTC. Please ignore any buttons or settings related to syncing grades.
+                <br><em>Action Required:</em> Continue to enter final grades manually in Focus as you always have.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <span class="question">How do I back up my course files & grades?</span>
+            <div class="answer">
+                <strong>Crucial Rule:</strong> Never treat an LMS (Blackboard or Canvas) as your only storage.
+                <br>1. Download all important <strong>Files</strong> from Blackboard content folders.
+                <br>2. Go to the Blackboard Grade Center and choose <strong>"Work Offline > Download"</strong> to save a
+                permanent Excel copy of your students' grades.
+                <br>Once Blackboard access ends, this data will be inaccessible.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <span class="question">Classic Quizzes vs. New Quizzes: Which should I use?</span>
+            <div class="answer">
+                When you create a quiz, Canvas may ask you to choose.
+                <ul>
+                    <li><strong>Classic Quizzes:</strong> Familiar, robust, works best if you just imported from BB.
+                        Recommended for now if you need speed.</li>
+                    <li><strong>New Quizzes:</strong> More modern features but a slightly different interface.</li>
+                </ul>
+                <p>If your imported quizzes are behaving strangely, try creating a comprehensive "Test" assignment
+                    manually for temporary use.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <span class="question">I can't find "Student View".</span>
+            <div class="answer">
+                In Canvas, the "Student View" button is located in the top-right corner of the Home page (look for the
+                eyeglass icon).
+                <br><em>Tip: You must "Leave Student View" (bottom right) to return to editing.</em>
+            </div>
+        </div>
+
+        <!-- VIDEO LIBRARY -->
+        <h2 class="category-title">📺 Helpful Video Resources</h2>
+
+        <div class="feature-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="video-box">
+                <div>
+                    <strong>For Instructors:</strong><br>
+                    <a href="https://community.canvaslms.com/t5/Video-Guide/Canvas-Interface-Overview-Instructors/ta-p/383117"
+                        target="_blank">Canvas Interface Overview (5 min)</a>
+                    <p style="font-size:0.9em; margin-bottom: 0;">Learn where everything is located.</p>
+                </div>
+            </div>
+            <div class="video-box">
+                <div>
+                    <strong>For Course Building:</strong><br>
+                    <a href="https://community.canvaslms.com/t5/Video-Guide/Assignments-Overview-Instructors/ta-p/383565"
+                        target="_blank">Assignments Overview (Video)</a>
+                    <p style="font-size:0.9em; margin-bottom: 0;">How to set up dropboxes and grading.</p>
+                </div>
+            </div>
+            <div class="video-box">
+                <div>
+                    <strong>File Management:</strong><br>
+                    <a href="https://community.canvaslms.com/t5/Video-Guide/Files-Overview-Instructors/ta-p/383563"
+                        target="_blank">Managing Files (Video)</a>
+                    <p style="font-size:0.9em; margin-bottom: 0;">Where did my PDFs go?</p>
+                </div>
+            </div>
+            <div class="video-box">
+                <div>
+                    <strong>Gradebook:</strong><br>
+                    <a href="https://community.canvaslms.com/t5/Video-Guide/Gradebook-Overview-Instructors/ta-p/383576"
+                        target="_blank">Gradebook Overview</a>
+                    <p style="font-size:0.9em; margin-bottom: 0;">Navigating the grid.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer
+            style="margin-top: 50px; text-align: center; color: #888; border-top: 1px solid #ddd; padding-top: 20px;">
+            <p>Pinellas Technical College - Canvas Transition Team</p>
+        </footer>
+    </div>
+
+</body>
+
+</html>
