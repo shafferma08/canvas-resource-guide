@@ -4,19 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canvas Mission Control: Select Your Portal 🚀</title>
+    <title>Canvas Mission Control: Select Your Portal</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;600;800&display=swap');
 
         :root {
             --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f1f5f9;
-            --accent-blue: #38bdf8;
-            --accent-purple: #818cf8;
-            --accent-green: #34d399;
-            --accent-orange: #fbbf24;
-            --danger: #f87171;
+            --card-bg: #ffffff;
+            --text-color: #f8fafc;
+            /* Brand Colors for Contrast and Hierarchy */
+            --accent-blue: #032b5b;
+            /* PCSB Green Vogue (Dark Blue) */
+            --accent-green: #008142;
+            /* PTC Logo Green */
+            --accent-orange: #FFCF01;
+            /* PTC Logo Yellow */
+
+            /* Alert Colors */
+            --danger-bg: #fef2f2;
+            --danger-border: #f87171;
+            --danger-text: #b91c1c;
         }
 
         body {
@@ -28,144 +35,198 @@
             display: flex;
             justify-content: center;
             min-height: 100vh;
-            background-image: radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(129, 140, 248, 0.1) 0%, transparent 20%);
+            /* Subtle radiant glow using the brand colors */
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(3, 43, 91, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 129, 66, 0.3) 0%, transparent 40%);
+            background-attachment: fixed;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             padding: 40px 20px;
             text-align: center;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: 2.8rem;
             margin-bottom: 10px;
-            background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+            color: #ffffff;
             font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3.5rem;
+            }
         }
 
         .subtitle {
-            font-size: 1.2rem;
-            color: #94a3b8;
+            font-size: 1.15rem;
+            color: #cbd5e1;
             margin-bottom: 40px;
         }
 
         /* WARNING BOX */
         .warning-zone {
-            background: rgba(248, 113, 113, 0.15);
-            border: 2px dashed var(--danger);
+            background: var(--danger-bg);
+            border: 2px dashed var(--danger-border);
             border-radius: 12px;
-            padding: 20px;
+            padding: 24px;
             margin-bottom: 50px;
-            position: relative;
-            overflow: hidden;
-            animation: pulse-border 2s infinite;
-        }
-
-        @keyframes pulse-border {
-            0% {
-                border-color: rgba(248, 113, 113, 0.5);
-            }
-
-            50% {
-                border-color: var(--danger);
-            }
-
-            100% {
-                border-color: rgba(248, 113, 113, 0.5);
-            }
+            color: #1e293b;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            text-align: left;
         }
 
         .warning-title {
-            color: var(--danger);
+            color: var(--danger-text);
             font-weight: 800;
-            font-size: 1.4rem;
-            margin-bottom: 10px;
+            font-size: 1.25rem;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 10px;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
+        .warning-zone p {
+            margin: 8px 0;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
+        /* RESPONSIVE GRID LAYOUT */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: stretch;
+        }
+
+        @media (min-width: 850px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* CARD STYLES */
         .card {
             background: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 35px 25px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            color: #1e293b;
+            text-align: center;
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
 
         .icon-box {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            width: 80px;
-            height: 80px;
-            line-height: 80px;
-            border-radius: 50%;
+            width: 85px;
+            height: 85px;
             margin: 0 auto 20px auto;
+            border-radius: 50%;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e2e8f0;
+        }
+
+        .icon-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Shrinks the PCSB square logo slightly so it does not get cut off by border-radius */
+        .icon-box.contain-img img {
+            width: 82%;
+            height: auto;
+            object-fit: contain;
         }
 
         .card h2 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1.45rem;
+            margin-top: 5px;
+            margin-bottom: 12px;
+            font-weight: 800;
         }
 
         .card p {
-            color: #cbd5e1;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
+            color: #475569;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-top: 0;
+            margin-bottom: 25px;
             flex-grow: 1;
         }
 
         .link-box {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 10px;
+            background: #f1f5f9;
+            padding: 14px;
             border-radius: 8px;
-            font-family: monospace;
-            color: var(--accent-blue);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            color: #0f172a;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            border: 1px solid #cbd5e1;
             word-break: break-all;
+        }
+
+        .card-meta {
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .card-meta strong {
+            color: #334155;
+            font-weight: 800;
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 25px;
+            padding: 14px 25px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             transition: all 0.2s;
-            width: 80%;
-            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
         }
 
-        /* Specific Card Styles */
+        .btn:focus-visible,
+        a:focus-visible {
+            outline: 3px solid #38bdf8;
+            outline-offset: 3px;
+        }
+
+        /* ============================
+           Specific Brand Card Adjustments
+           ============================ */
+
+        /* Card 1: PCSB Staff */
         .card-staff {
-            border-top: 5px solid var(--accent-blue);
+            border-top: 8px solid var(--accent-blue);
         }
 
         .card-staff h2 {
@@ -173,16 +234,18 @@
         }
 
         .card-staff .btn {
-            background: var(--accent-blue);
-            color: var(--bg-color);
+            background-color: var(--accent-blue);
+            color: #ffffff;
         }
 
         .card-staff .btn:hover {
-            background: #7dd3fc;
+            background-color: #021a38;
+            box-shadow: 0 4px 6px rgba(3, 43, 91, 0.3);
         }
 
+        /* Card 2: PTC Certificate */
         .card-cert {
-            border-top: 5px solid var(--accent-green);
+            border-top: 8px solid var(--accent-green);
         }
 
         .card-cert h2 {
@@ -190,36 +253,60 @@
         }
 
         .card-cert .btn {
-            background: var(--accent-green);
-            color: var(--bg-color);
+            background-color: var(--accent-green);
+            color: #ffffff;
         }
 
         .card-cert .btn:hover {
-            background: #6ee7b7;
+            background-color: #005c2f;
+            box-shadow: 0 4px 6px rgba(0, 129, 66, 0.3);
         }
 
+        /* Card 3: PTC Apprenticeships */
         .card-app {
-            border-top: 5px solid var(--accent-orange);
+            border-top: 8px solid var(--accent-orange);
         }
 
         .card-app h2 {
-            color: var(--accent-orange);
+            color: #1e293b;
+            /* Deep slate instead of yellow for high contrast readability */
         }
 
         .card-app .btn {
-            background: var(--accent-orange);
-            color: var(--bg-color);
+            background-color: var(--accent-orange);
+            color: #0f172a;
+            /* Dark text on yellow button */
+            border: 1px solid #e2e8f0;
         }
 
         .card-app .btn:hover {
-            background: #fcd34d;
+            background-color: #e6bb00;
+            box-shadow: 0 4px 6px rgba(255, 207, 1, 0.3);
+            border-color: #d4a800;
         }
 
+        /* FOOTER */
         .footer {
             margin-top: 50px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
-            color: #64748b;
+            padding-top: 25px;
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        /* Ensure the footer blue link is highly visible on the dark body background */
+        .footer a {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .footer a:hover {
+            background-color: rgba(56, 189, 248, 0.1);
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -227,67 +314,70 @@
 <body>
 
     <div class="container">
-        <div class="header-content">
-            <h1>Mission Control 🚀</h1>
-            <p class="subtitle">Choose the correct flight path for your program.</p>
-        </div>
+        <header class="header-content">
+            <h1>Canvas Login Portals</h1>
+            <p class="subtitle">Choose the correct Canvas pathway for your program.</p>
+        </header>
 
         <!-- WARNING -->
         <!-- CRITICAL INFO -->
-        <div class="warning-zone">
-            <div class="warning-title">⚠️ CRITICAL: PATHWAYS MATTER ⚠️</div>
-            <p><strong>The specific link (URL) you use determines which credentials will work.</strong></p>
-            <p>If a student tries to log in using the wrong pathway (e.g., a PTC Student using the Staff link),
-                <strong>their login will fail</strong> even if their password is correct.</p>
-            <p>Please ensure your students are clicking the <em>exact</em> link for their program below.</p>
-        </div>
+        <section class="warning-zone" aria-labelledby="warning-heading">
+            <div class="warning-title" id="warning-heading">
+                <span aria-hidden="true">⚠️</span> CRITICAL: PATHWAYS MATTER <span aria-hidden="true">⚠️</span>
+            </div>
+            <p><strong>The specific Canvas link (URL) you use determines which credentials will work.</strong></p>
+            <p>If you try to log in using the wrong pathway (e.g., a PTC Student using the Staff link),
+                <strong>your Canvas login will fail</strong> even if your password is correct.
+            </p>
+            <p>Please ensure you are clicking the <em>exact</em> Canvas link for your specific program below.</p>
+        </section>
 
-        <div class="grid">
+        <main class="grid">
 
             <!-- Card 1: Staff -->
-            <div class="card card-staff">
-                <div class="icon-box">👨‍🏫</div>
+            <article class="card card-staff">
+                <div class="icon-box contain-img">
+                    <img src="images/pcsb_logo.png" alt="Pinellas County Schools Logo">
+                </div>
                 <h2>Staff & Dual Enrollment</h2>
                 <p>For Instructors, Staff, and High School Dual Enrollment students.</p>
                 <div class="link-box">/login/saml/211</div>
-                <div style="margin-bottom: 15px; font-size: 0.85em; color: #94a3b8;">Credentials:
-                    <strong>pcsb.org</strong> email
-                </div>
-                <a href="https://pcsb.instructure.com/login/saml/211" class="btn" target="_blank">Launch Staff
-                    Portal</a>
-            </div>
+                <div class="card-meta">Credentials: <strong>pcsb.org</strong> email</div>
+                <a href="https://pcsb.instructure.com/login/saml/211" class="btn" target="_blank"
+                    rel="noopener noreferrer">Launch Staff Portal</a>
+            </article>
 
             <!-- Card 2: PTC Certificate -->
-            <div class="card card-cert">
-                <div class="icon-box">🎓</div>
+            <article class="card card-cert">
+                <div class="icon-box">
+                    <img src="images/ptc_logo.png" alt="Pinellas Technical College Logo">
+                </div>
                 <h2>PTC Career Students</h2>
                 <p>For standard postsecondary Certificate/Career students.</p>
                 <div class="link-box">/login/saml/213</div>
-                <div style="margin-bottom: 15px; font-size: 0.85em; color: #94a3b8;">Credentials:
-                    <strong>myptc.edu</strong> email
-                </div>
-                <a href="https://pcsb.instructure.com/login/saml/213" class="btn" target="_blank">Launch Student
-                    Portal</a>
-            </div>
+                <div class="card-meta">Credentials: <strong>myptc.edu</strong> email</div>
+                <a href="https://pcsb.instructure.com/login/saml/213" class="btn" target="_blank"
+                    rel="noopener noreferrer">Launch Student Portal</a>
+            </article>
 
             <!-- Card 3: Apprenticeships -->
-            <div class="card card-app">
-                <div class="icon-box">🛠️</div>
+            <article class="card card-app">
+                <div class="icon-box">
+                    <img src="images/ptc_logo.png" alt="Pinellas Technical College Logo">
+                </div>
                 <h2>Short Course / Apprentice</h2>
                 <p>For Apprenticeships and specialized short-term courses.</p>
                 <div class="link-box">/login/canvas</div>
-                <div style="margin-bottom: 15px; font-size: 0.85em; color: #94a3b8;">Credentials: Special Canvas Login
-                </div>
-                <a href="https://pcsb.instructure.com/login/canvas" class="btn" target="_blank">Launch Special
-                    Portal</a>
-            </div>
+                <div class="card-meta">Credentials: <strong>Special Canvas Login</strong></div>
+                <a href="https://pcsb.instructure.com/login/canvas" class="btn" target="_blank"
+                    rel="noopener noreferrer">Launch Special Portal</a>
+            </article>
 
-        </div>
+        </main>
 
-        <div class="footer">
-            <p>Need help determining your path? Contact <a href="mailto:shafferma@pcsb.org"
-                    style="color: var(--accent-blue);">Marianne Shaffer</a></p>
-        </div>
+        <footer class="footer">
+            <p>Need help determining your path? Contact <a href="mailto:shafferma@pcsb.org">Marianne Shaffer</a></p>
+        </footer>
     </div>
 
 </body>
